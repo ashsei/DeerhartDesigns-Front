@@ -103,23 +103,38 @@ const AddProduct = () => {
             <button className="btn btn-outline-primary">Create Product</button>
 
         </form>
-    )
+    );
+
     const showError = () => (
         <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
             {error}
         </div>
     );
+    
+    const showSuccess = () => (
+        <div className="alert alert-info" style={{ display: createdProduct ? '' : 'none' }}>
+            <h2>{`${createdProduct}`} has been successfully created!</h2>
+        </div>
+    );
+
+    const showLoading = () => (
+        loading && (<div className="alert alert-success"><h2>Loading...</h2></div>)
+    );
+    
     return (
         <Layout title="Add a New Product" description={`Hello, ${user.name}! Please use the form below to create a new product.`} className="container-fluid">
             <div className="row">
                 <div className="col-md-8 offset-md-2">
-                    {newPostForm()}
                     {showError()}
+                    {showLoading()}
+                    {showSuccess()}
+                    {newPostForm()}
+                    
                 </div>
             </div>
             
         </Layout>
     )
-}
+};
 
 export default AddProduct
