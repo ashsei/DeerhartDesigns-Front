@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
-import { createProduct } from './apiAdmin';
+import { createProduct, getCategories } from './apiAdmin';
 
 const AddProduct = () => {
 
@@ -25,8 +25,20 @@ const AddProduct = () => {
     const { user, token } = isAuthenticated();
     const {name, description, price, categories, category, height, length, quantity, loading, error, createdProduct, redirectToProfile, formData} = values
 
+    // Loads categories and sets form data
+
+    const init = () => {
+        getCategories().then(data => {
+            if(data.error) {
+                setValues({...values, error: data.error})
+            } else {
+                setValues({...values, categories: data, formData: new FormData()})
+            }
+        })
+    }
+
     useEffect(() => {
-        setValues({...values, formData: new FormData()})
+        init()
     }, [])
 
     const handleChange = name => event => {
@@ -47,6 +59,7 @@ const AddProduct = () => {
             }
         })
     }
+
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
             <h4>Product Photo</h4>
@@ -68,8 +81,11 @@ const AddProduct = () => {
             <div className="form-group">
                 <label className="text-muted">Category</label> 
                 <select onChange={handleChange('category')} className="form-control" value={category} required> 
-                    <option value="5f94e9d373b5c8a6f497180c">Paintings</option>
-                    <option value="5f94ea1373b5c8a6f497180e">Drawings</option>
+                    <option>Select a Category</option>
+                    {categories && categories.map((c, i) => (
+                        <option key={i} value={c._id}>{
+                            c.name}
+                        </option>))}
                 </select> 
             </div>
             <div className="form-group">
