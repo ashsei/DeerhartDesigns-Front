@@ -31,6 +31,7 @@ const Home = () => {
         loadProductsByArrival()
         loadProductsBySell()
     }, [])
+    
    return ( 
         <Layout title="Deerhart Designs" description="Kangaroo Deerhart's Art" className="container-fluid">
             <h2 className="mb-4">Best Sellers</h2>
