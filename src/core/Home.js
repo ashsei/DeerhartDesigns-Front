@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Layout from './Layout';
-import { getProducts } from './apiCore'
-import Card from './Card'
+import { getProducts } from './apiCore';
+import Card from './Card';
+import Search from './Search';
 
 const Home = () => {
     const [productsBySell, setProductsBySell] = useState([])
@@ -31,9 +32,10 @@ const Home = () => {
         loadProductsByArrival()
         loadProductsBySell()
     }, [])
-    
+
    return ( 
         <Layout title="Deerhart Designs" description="Kangaroo Deerhart's Art" className="container-fluid">
+            <Search />
             <h2 className="mb-4">Best Sellers</h2>
             <div className="row">
                 {productsBySell.map((product, i) => (<Card key={i} product={product}></Card>))}

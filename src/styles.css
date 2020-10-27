@@ -7,7 +7,7 @@
 }
 
 .jumbotron h2 {
-    margin-top: -20px;
+    margin-top: -30px;
 }
 
 @media only screen and (max-width:600px) {
@@ -17,7 +17,7 @@
 }
 .jumbotron {
     width: 30wh;
-    height: 15vh;
+    height: 20vh;
     color: #fff;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
