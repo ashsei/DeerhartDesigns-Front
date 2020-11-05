@@ -1,11 +1,51 @@
+/* Border Radius */
 .btn, .jumbotron, .nav :hover {
     border-radius: 0px;
 }
 
+/* Cart Badge */
+.cart-badge,
+.cart-badge:hover {
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 12px;
+    font-style: italic;
+    background: #000;
+}
+
+/* Single Product Page - Product Name */
+.name {
+    background: indigo;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Black Shading from 10-5 */
+.black-10 {
+    background: #f2f2f2;
+}
+.black-9 {
+    background: #e6e6e6;
+}
+.black-8 {
+    background: #d9d9d9;
+}
+.black-7 {
+    background: #cccccc;
+}
+.black-6 {
+    background: #bfbfbf;
+}
+.black-5 {
+    background: #b3b3b3;
+}
+
+/* Product Image on Card */
 .product-img {
     min-height: 100px
 }
 
+/* Heading Jumbotron */
 .jumbotron h2 {
     margin-top: -30px;
 }
@@ -15,6 +55,8 @@
         margin-top: 0;
     }
 }
+
+/* Jumbotron Background Animation */
 .jumbotron {
     width: 30wh;
     height: 20vh;
