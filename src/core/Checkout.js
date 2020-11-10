@@ -10,6 +10,7 @@ import DropIn from 'braintree-web-drop-in-react'
 
 const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     const [data, setData] = useState({
+        loading: false,
         success: false,
         clientToken: null, 
         error: '', 
@@ -51,6 +52,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     };
 
     const buy = () => {
+        setData({ loading: true})
         let nonce;
         let getNonce = data.instance
         .requestPaymentMethod()
@@ -67,9 +69,13 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                 setData({ ...data, success: response.success })
                 emptyCart(() => {
                     setRun(!run)
+                    setData({ loading: false})
                 })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setData({ loading: false })
+            })
         })
         .catch(error => {
             // console.log("DropIn Error: ", error);
@@ -83,8 +89,12 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
                     <DropIn options={{ 
-                        authorization: data.clientToken
-                    }} onInstance={instance => (data.instance = instance)} />
+                        authorization: data.clientToken,
+                        paypal: {
+                            flow: 'vault'
+                        }
+                    }} 
+                    onInstance={instance => (data.instance = instance)} />
                     <button onClick={buy} className="btn btn-success btn-block">Pay</button>
                 </div>
             ) : null }
@@ -97,10 +107,14 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
     const showSuccess = success => (
         <div className="alert alert-info" style={{display: success ? '' : 'none'}}>Thank you! Your payment was successful! Please check your email for confirmation of this order.</div>
     )
+    const showLoading = loading => (
+        loading && <h2>Loading...</h2>
+    )
 
     return (
         <div>
             <h2>Total: ${getTotal()}</h2>
+            {showLoading(data.loading)}
             {showSuccess(data.success)}
             {showError(data.error)}
             {showCheckout()}
