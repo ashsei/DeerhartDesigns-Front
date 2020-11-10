@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from './Layout';
 import { getProducts, getBraintreeClientToken, processPayment } from './apiCore';
+import {emptyCart} from './CartHelpers.js'
 import Card from './Card';
 import {isAuthenticated} from '../auth';
 import {Link} from 'react-router-dom';
@@ -64,7 +65,9 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
             .then(response => {
                 // console.log(response)
                 setData({ ...data, success: response.success })
-
+                emptyCart(() => {
+                    setRun(!run)
+                })
             })
             .catch(error => console.log(error))
         })
