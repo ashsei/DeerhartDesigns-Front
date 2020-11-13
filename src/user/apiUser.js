@@ -8,7 +8,6 @@ export const read = (userId, token) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({order: createOrderData})
     })
     .then(response => {
         return response.json();
