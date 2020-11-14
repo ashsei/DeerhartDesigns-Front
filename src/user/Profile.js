@@ -42,9 +42,7 @@ const Profile = ({ match }) => {
                 // console.log(data.error);
                 alert(data.error);
             } else {
-                console.log("No Error")
                 updateUser(data, () => {
-                    console.log("Updating user with this data", data)
                     setValues({
                         ...values,
                         name: data.name,
