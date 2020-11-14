@@ -17,7 +17,7 @@ export const read = (userId, token) => {
 
 export const update = (userId, token, user) => {
     return fetch (`${API}/user/${userId}`, {
-        method: "out",
+        method: "PUT",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
