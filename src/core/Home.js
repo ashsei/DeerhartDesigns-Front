@@ -33,7 +33,7 @@ const Home = () => {
         loadProductsBySell()
     }, [])
 
-   return ( 
+    return ( 
         <Layout title="Deerhart Designs" description="Kangaroo Deerhart's Art" className="container-fluid">
             <Search />
             <h2 className="mb-4">Best Sellers</h2>
