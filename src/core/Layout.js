@@ -1,20 +1,16 @@
 import React from "react";
-import Menu from "./Menu";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 import "../styles.css";
 
 const Layout = ({
-  title = "Title",
-  description = "Description",
   className,
   children,
 }) => (
-  <div>
-    <Menu />
-    <div className="jumbotron">
-      <h2>{title}</h2>
-      <p className="lead">{description}</p>
-    </div>
-    <div className={className}>{children}</div>
+  <div style={{backgroundColor: '#373737', height: '100'}}>
+    <NavBar />
+    <div className={className} style={{paddingBottom: '45px', height: '100%'}}>{children}</div>
+    <Footer />  
   </div>
 );
 

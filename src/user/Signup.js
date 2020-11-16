@@ -37,36 +37,36 @@ const Signup = () => {
   };
 
   const signUpForm = () => (
-    <form>
+    <form style={{ height: '60vh', marginTop: '22vh' }}>
       <div className="form-group">
-        <label className="text-muted">Name</label>
         <input
           onChange={handleChange("name")}
           type="text"
           className="form-control"
           value={name}
+          placeholder="Name"
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Email</label>
         <input
           onChange={handleChange("email")}
           type="text"
           className="form-control"
           value={email}
+          placeholder="Email Address"
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}
           type="password"
           className="form-control"
           value={password}
+          placeholder="Password"
         />
         {/* !!! Add option for user to see password !!!  */}
       </div>
-      <button onClick={clickSubmit} className="btn btn-primary">
+      <button onClick={clickSubmit} className="btn btn-secondary btn-block">
         Submit
       </button>
     </form>
@@ -75,7 +75,7 @@ const Signup = () => {
   const showError = () => (
     <div
       className="alert alert-danger"
-      style={{ display: error ? "" : "none" }}
+      style={{ display: error ? "" : "none", marginBottom: '-150px', marginTop: '80px' }}
     >
       {error}
     </div>

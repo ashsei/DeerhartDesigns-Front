@@ -53,7 +53,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
       <div>{showDropIn()}</div>
     ) : (
       <Link to="/signin">
-        <button className="btn btn-primary">Sign In to Checkout</button>
+        <button className="btn btn-secondary btn-block">Sign In</button>
       </Link>
     );
   };
@@ -110,9 +110,9 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
-        <div>
+        <div style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px'}}style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px'}}>
           <div className="form-group mb-3">
-            <label className="text-muted">Delivery Address:</label>
+            <label style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '20px'}}>Delivery Address:</label>
             <textarea
               onChange={handleAddress}
               className="form-control"
@@ -125,7 +125,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
               authorization: data.clientToken,
               paypal: {
                 flow: "vault",
-              },
+              }
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
@@ -148,7 +148,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const showSuccess = (success) => (
     <div
       className="alert alert-info"
-      style={{ display: success ? "" : "none" }}
+      style={{ display: success ? "" : "none", textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px' }}
     >
       Thank you! Your payment was successful! Please check your email for
       confirmation of this order.
@@ -158,7 +158,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
   return (
     <div>
-      <h2>Total: ${getTotal()}</h2>
+      <hr />
+      <h2 style={{textAlign: 'center', color: 'green', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px'}}>Item Subtotal: ${getTotal()}</h2>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}

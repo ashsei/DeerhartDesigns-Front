@@ -16,14 +16,13 @@ const Cart = () => {
   const showItems = (items) => {
     return (
       <div>
-        <h2>Your cart has {`${items.length}`} items.</h2>
+        <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '10px'}}>Your cart has {`${items.length}`} item(s)</h2>
         <hr />
         {items.map((product, index) => (
           <Card
             key={index}
             product={product}
             showAddToCartButton={false}
-            cartUpdate={true}
             showRemoveProductButton={true}
             setRun={setRun}
             run={run}
@@ -34,27 +33,27 @@ const Cart = () => {
   };
 
   const noItems = () => (
-    <h2>
-      Your cart is empty. <br /> <Link to="/shop">Continue Shopping</Link>
+    <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '30vh', marginBottom: '45vh'}}>
+      Your cart is empty. <br /> <Link to="/shop" style={{textDecoration: 'underline'}}>Continue Shopping</Link>
     </h2>
   );
 
   return (
     <Layout
-      title="Deerhart Designs"
-      description="Your Deerhart Designs Cart"
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-6">
-          {items.length > 0 ? showItems(items) : noItems()}
+      {items.length > 0 ? (
+        <div className="row" style={{ marginBottom: '25vh' }}>
+          <div className="col-6">
+            {showItems(items)}
+          </div>
+          <div className="col-6">
+            <h2 className="mb-4 mt-10" style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px'}}>Your Cart Summary</h2>
+            <Checkout products={items} setRun={setRun} run={run} />
+          </div>
         </div>
-        <div className="col-6">
-          <h2 className="mb-4">Your Cart Summary</h2>
-          <hr />
-          <Checkout products={items} setRun={setRun} run={run} />
-        </div>
-      </div>
+      ) : (noItems())}
+      
     </Layout>
   );
 };

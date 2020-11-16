@@ -10,6 +10,9 @@ const Card = ({
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
+  showTitle = true,
+  showBackToShop = false,
+  showDescription = false,
   setRun = (f) => f,
   run = undefined,
 }) => {
@@ -19,8 +22,8 @@ const Card = ({
   const showViewButton = (showViewProductButton) => {
     return (
       showViewProductButton && (
-        <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2 mr-2">
+        <Link to={`/product/${product._id}`}>
+          <button className="btn btn-secondary mt-2 mb-2" style={{fontSize: "20px"}}>
             View Product
           </button>
         </Link>
@@ -38,24 +41,28 @@ const Card = ({
       return <Redirect to="/cart" />;
     }
   };
+
   const showAddToCart = (showAddToCartButton) => {
     return (
-      showAddToCartButton && (
+      (showAddToCartButton && product.quantity > 0) ? (
         <button
           onClick={addToCart}
-          className="btn btn-outline-warning mt-2 mb-2"
+          className="btn btn-success mt-2 mb-2 ml-2"
+          style={{fontSize: "20px"}}
         >
           Add to Cart
         </button>
-      )
+      
+        
+      ) : (null)
     );
   };
 
   const showStock = (quantity) => {
     return quantity > 0 ? (
-      <span className="badge badge-primary badge-pill">In Stock</span>
+      <span className="badge badge-success badge-pill">In Stock</span>
     ) : (
-      <span className="badge badge-primary badge-pill">Out of Stock</span>
+      <span className="badge badge-danger badge-pill">Out of Stock</span>
     );
   };
 
@@ -82,6 +89,29 @@ const Card = ({
       )
     );
   };
+
+  const showBackToShopButton = (showBackToShop) => {
+    return (
+      showBackToShop && (
+        <Link to={`/shop`} className="ml-2">
+          <button className="btn btn-secondary mt-2 mb-2 mr-2" style={{fontSize: "20px"}}>
+            Back to Shop
+          </button>
+        </Link>
+      )
+    );
+  };
+
+  const showDescriptionInfo = (showDescription) => {
+    return (
+      showDescription && (
+        <li className="list-group-item" style={{background: 'none'}}>
+            {product.description}
+        </li>
+      )
+    );
+  };
+
   const showCartUpdate = (cartUpdate) => {
     return (
       cartUpdate && (
@@ -103,25 +133,31 @@ const Card = ({
   };
 
   return (
-    <div className="card">
-      <div className="card-header name">{product.name}</div>
-      <div className="card-body">
-        {shouldRedirect(redirect)}
-        <ShowImage item={product} url="product" />
-        <p className="lead mt-2">{product.description.substring(0, 100)}</p>
-        <p className="black-10">${product.price}</p>
-        <p className="black-9">
-          Category: {product.category && product.category.name}
-        </p>
-        <p className="black-8">
-          Added On: {moment(product.createdAt).fromNow()}
-        </p>
-        {showStock(product.quantity)}
-        <br />
-        {showViewButton(showViewProductButton)}
-        {showAddToCart(showAddToCartButton)}
+    <div className="card" style={{minHeight: '75vh', textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
+      <ShowImage item={product} url="product" />
+      <div className="card-body" style={{background: 'none'}}>
+        {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item" style={{background: 'none'}}>${product.price}</li>
+          <li className="list-group-item" style={{background: 'none'}}>
+            Dimensions: {product.height}" x {product.length}"
+          </li>
+          <li className="list-group-item" style={{background: 'none'}}>
+            Added: {moment(product.createdAt).fromNow()}
+          </li>
+          {showDescriptionInfo(showDescription)}
+          <li className="list-group-item" style={{background: 'none'}}>
+            {showStock(product.quantity)}
+          </li>
+        <li className="list-group-item" style={{background: 'none'}}>
+            {showViewButton(showViewProductButton)}
+            {showBackToShopButton(showBackToShop)} 
+            {showAddToCart(showAddToCartButton)}
+        </li>  
+          </ul>
         {showRemoveButton(showRemoveProductButton)}
         {showCartUpdate(cartUpdate)}
+        {shouldRedirect(redirect)}
       </div>
     </div>
   );

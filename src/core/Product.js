@@ -32,26 +32,26 @@ const Product = (props) => {
 
   return (
     <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-8">
+        <div className="col-12">
           {product && product.description && (
-            <Card product={product} showViewProductButton={false} />
+            <>
+              <h1 className="text-center mb-3" style={{color: "white", fontFamily: "Big Shoulders Inline Display, cursive"}}>{product.name}</h1>
+              <Card product={product} showViewProductButton={false} showTitle={false} showBackToShop={true} showDescription={true}/>
+            </>
           )}
+          <hr />
         </div>
-        <div className="col-4">
-          <h4>Related Products</h4>
+        {/* <div className="col-4">
+          <h1 className="mb-3" style={{textAlign: 'center', color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>Related Products</h1>
           {relatedProduct.map((p, i) => (
             <div className="mb-3">
               <Card key={i} product={p} />
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

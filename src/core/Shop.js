@@ -56,7 +56,7 @@ const Shop = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-warning mb-5">
+        <button onClick={loadMore} className="btn btn-secondary mb-5" style={{fontSize: '20px'}}>
           Load More
         </button>
       )
@@ -91,21 +91,17 @@ const Shop = () => {
   };
 
   return (
-    <Layout
-      title="Deerhart Designs Store"
-      description="Buy Some of Kangaroo Deerhart's Art!"
-      className="container-fluid"
-    >
+    <Layout>
       <div className="row mr-5">
-        <div className="col-4">
-          <h4>Filter by Category</h4>
+        <div className="col-4 mt-5 mb-4" style={{ color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", fontSize:"20px"}}>
+          <h3 style={{ textAlign: "center" }}>Filter by Category</h3>
           <ul>
             <Checkbox
               categories={categories}
               handleFilters={(filters) => handleFilters(filters, "category")}
             />
           </ul>
-          <h4>Filter by Price</h4>
+          <h3 style={{ textAlign: "center" }}>Filter by Price</h3>
           <div>
             <RadioBox
               prices={prices}
@@ -113,11 +109,10 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className="col-8">
-          <h2 className="mb-4">Products</h2>
-          <div className="row">
+        <div className="col-8" style={{textAlign: "center", color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
+          <div className="row mt-5" style={{fontSize: "24px"}}>
             {filteredResults.map((product, i) => (
-              <div key={i} className="col-4 mb-3">
+              <div key={i} className="col-12 mb-3">
                 <Card product={product} />
               </div>
             ))}
