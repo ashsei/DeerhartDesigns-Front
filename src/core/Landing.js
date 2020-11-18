@@ -6,11 +6,16 @@ const Landing = () => {
 
     return (
         <div className="landing">
+            
             <NavBar />
-            <div className="link">
-                <a href="/shop">Shop ⎆</a>
+            <div className='wrapper' style={{minHeight: '100', marginBottom: '-45px'}}>
+                <div className="link">
+                    <a href="/shop" className="link">Shop ⎆</a>
+                </div>
             </div>
-            <Footer />  
+            <div className="landing-footer">
+                <span className="navbar-text" >© All Rights Reserved - Deerhart Designs 2020 - Developed with ❤️ by <a href="http://seibel.life">Ashton Seibel</a></span>
+            </div>
         </div>
         
     )

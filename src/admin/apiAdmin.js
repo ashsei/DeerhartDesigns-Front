@@ -54,6 +54,7 @@ export const listOrders = (userId, token) => {
     },
   })
     .then((response) => {
+      console.log(response.json)
       return response.json();
     })
     .catch((err) => console.log(err));

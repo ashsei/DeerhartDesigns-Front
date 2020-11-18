@@ -79,6 +79,8 @@ const Orders = () => {
       </select>
     </div>
   );
+
+
   return (
     <Layout
       title="Orders"
@@ -115,11 +117,10 @@ const Orders = () => {
                     Delivery Address: {o.address}
                   </li>
                 </ul>
-
                 <h3 className="mt-4 mb-4 font italic">
                   Total Produtcs in the Order: {o.products.length}
-                </h3>
-                {o.products.map((p, i) => (
+                </h3> 
+                {(o.products.map((p, i) => (
                   <div
                     className="mb-4"
                     key={i}
@@ -130,7 +131,7 @@ const Orders = () => {
                     {showInput("Product Count", p.count)}
                     {showInput("Product ID", p._id)}
                   </div>
-                ))}
+                )))}
               </div>
             );
           })}

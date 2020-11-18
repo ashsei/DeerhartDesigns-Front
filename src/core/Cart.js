@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Layout from "./Layout";
-import { getCart, removeItem } from "./CartHelpers";
+import { getCart } from "./CartHelpers";
 import Card from "./Card";
-import Checkout from "./Checkout";
+import Stripe from "./Stripe";
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -16,7 +16,7 @@ const Cart = () => {
   const showItems = (items) => {
     return (
       <div>
-        <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '10px'}}>Your cart has {`${items.length}`} item(s)</h2>
+        <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '10px', fontSize:'40px'}}>Your cart has {`${items.length}`} item(s)</h2>
         <hr />
         {items.map((product, index) => (
           <Card
@@ -38,6 +38,7 @@ const Cart = () => {
     </h2>
   );
 
+
   return (
     <Layout
       className="container-fluid"
@@ -48,8 +49,9 @@ const Cart = () => {
             {showItems(items)}
           </div>
           <div className="col-6">
-            <h2 className="mb-4 mt-10" style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px'}}>Your Cart Summary</h2>
-            <Checkout products={items} setRun={setRun} run={run} />
+            <h2 style={{ textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '10px', fontSize: '40px' }}>Cart Summary / Checkout</h2>
+            <hr />
+            <Stripe products={items} />
           </div>
         </div>
       ) : (noItems())}

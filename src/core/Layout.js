@@ -7,9 +7,11 @@ const Layout = ({
   className,
   children,
 }) => (
-  <div style={{backgroundColor: '#373737', height: '100'}}>
+  <div style={{backgroundColor: '#373737', minheight: '100%'}}>
     <NavBar />
-    <div className={className} style={{paddingBottom: '45px', height: '100%'}}>{children}</div>
+    <div className='wrapper' style={{minHeight: '100%', marginBottom: '-45px'}}>
+      <div className={className} style={{height: '100%'}}>{children}</div>
+    </div>
     <Footer />  
   </div>
 );

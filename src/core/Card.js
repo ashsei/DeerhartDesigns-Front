@@ -134,7 +134,7 @@ const Card = ({
 
   return (
     <div className="card" style={{minHeight: '75vh', textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
-      <ShowImage item={product} url="product" />
+      <ShowImage item={product} url="product"/>
       <div className="card-body" style={{background: 'none'}}>
         {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
         <ul className="list-group list-group-flush">
