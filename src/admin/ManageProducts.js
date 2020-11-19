@@ -35,24 +35,22 @@ const ManageProducts = () => {
 
   return (
     <Layout
-      title="Product Management"
-      description="Deerhart Designs"
       className="container-fluid"
     >
-      <h2 className="mb-4">Manage Products In Store</h2>
-      <div className="row">
-        <div className="col-12">
-          <h2 className="text-center">Total Products: {products.length}</h2>
+      <h1 className="mb-4" style={{color: 'white', textAlign: 'center', fontFamily: "Big Shoulders Inline Display, cursive", textDecoration: 'underline' }}>Manage Products In Store</h1>
+      <div className="row" style={{display: 'block', overflow: 'auto'}}>
+        <div className="col-12" style={{marginBottom: "30px"}}>
+          <h2 className="text-center" style={{ fontFamily: "Big Shoulders Inline Display, cursive", color: 'white'}}>Total Products: {products.length}</h2>
           <hr />
-          <ul className="list-group">
+          <ul className="list-group" style={{ fontFamily: "Big Shoulders Inline Display, cursive" }}>
             {products.map((p, i) => (
               <li
                 key={i}
-                className="list-group-item d-flex justify-content-end align-items-center"
+                className="list-group-item"
               >
-                <strong>{p.name}</strong>
+                <h4 style={{ textAlign: "center"}}>{p.name}</h4>
                 <Link to={`/admin/product/update/${p._id}`}>
-                  <button className="badge badge-warning badge-pill">
+                  <button className="btn btn-secondary btn-block">
                     Update
                   </button>
                 </Link>
@@ -60,7 +58,7 @@ const ManageProducts = () => {
                   onClick={() => {
                     destroy(p._id);
                   }}
-                  className="badge badge-danger badge-pill"
+                  className="btn btn-danger btn-block mt-1"
                 >
                   Delete
                 </button>

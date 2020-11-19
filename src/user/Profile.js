@@ -63,9 +63,9 @@ const Profile = ({ match }) => {
   };
 
   const profileUpdate = (name, email, password) => (
-    <form>
+    <form style={{fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '25px', color: 'white', minHeight: '73vh'}}>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label>Name</label>
         <input
           type="text"
           onChange={handleChange("name")}
@@ -74,7 +74,7 @@ const Profile = ({ match }) => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Email</label>
+        <label>Email</label>
         <input
           type="email"
           onChange={handleChange("email")}
@@ -83,7 +83,7 @@ const Profile = ({ match }) => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Password</label>
+        <label>Password</label>
         <input
           type="password"
           onChange={handleChange("password")}
@@ -100,11 +100,9 @@ const Profile = ({ match }) => {
 
   return (
     <Layout
-      title="Profile"
-      description="Update your profile"
       className="container-fluid"
     >
-      <h2 className="mb-4">Profile update</h2>
+      <h2 className="mb-4 mt-5" style={{textAlign: 'center', color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textDecoration: 'underline' }}>Update Your DeerhartDesigns Account Profile</h2>
       {profileUpdate(name, email, password)}
       {redirectUser(success)}
     </Layout>

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
-import Footer from './Footer';
 
 const Landing = () => {
 
     return (
         <div className="landing">
-            
             <NavBar />
             <div className='wrapper' style={{minHeight: '100', marginBottom: '-45px'}}>
                 <div className="link">

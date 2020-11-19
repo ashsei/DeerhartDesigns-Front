@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { createProduct, getCategories } from "./apiAdmin";
@@ -84,20 +85,21 @@ const AddProduct = () => {
   };
 
   const newPostForm = () => (
-    <form className="mb-3" onSubmit={clickSubmit}>
+    <form className="mb-3 mt-3" onSubmit={clickSubmit} style={{color: 'white', fontFamily: 'Big Shoulders Inline Display, cursive', fontSize: '20px', marginTop: '20px', marginBottom: '20px'}}>
       <h4>Product Photo</h4>
       <div className="form-group">
-        <label className="btn btn-secondary">
+        <label className="btn btn-secondary btn-block">
           <input
             onChange={handleChange("photo")}
             type="file"
             name="photo"
             accept="image/*"
+            style={{}}
           />
         </label>
       </div>
       <div className="form-group">
-        <label className="text-muted">Name</label>
+        <label>Name</label>
         <input
           onChange={handleChange("name")}
           type="text"
@@ -107,7 +109,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Description</label>
+        <label>Description</label>
         <textarea
           onChange={handleChange("description")}
           className="form-control"
@@ -116,7 +118,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Price</label>
+        <label>Price</label>
         <input
           onChange={handleChange("price")}
           type="number"
@@ -126,7 +128,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Category</label>
+        <label>Category</label>
         <select
           onChange={handleChange("category")}
           className="form-control"
@@ -143,7 +145,7 @@ const AddProduct = () => {
         </select>
       </div>
       <div className="form-group">
-        <label className="text-muted">Height</label>
+        <label>Height</label>
         <input
           onChange={handleChange("height")}
           type="number"
@@ -153,7 +155,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Length</label>
+        <label>Length</label>
         <input
           onChange={handleChange("length")}
           type="number"
@@ -163,7 +165,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="text-muted">Quantity</label>
+        <label>Quantity</label>
         <input
           onChange={handleChange("quantity")}
           type="number"
@@ -172,7 +174,7 @@ const AddProduct = () => {
           required
         />
       </div>
-      <button className="btn btn-outline-primary">Create Product</button>
+      <button className="btn btn-success btn-block" style={{marginTop: '20px', marginBottom: '20px'}}>Create Product</button>
     </form>
   );
 
@@ -203,16 +205,18 @@ const AddProduct = () => {
 
   return (
     <Layout
-      title="Add a New Product"
-      description={`Hello, ${user.name}! Please use the form below to create a new product.`}
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
+      <div className="row" style={{ minHeight: '100vh', color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
+        <div className="col-md-8 offset-md-2 mt-3">
+          <h1 style={{textAlign: 'center', textDecoration: 'underline' }}>Create a New Product</h1>
           {showError()}
           {showLoading()}
           {showSuccess()}
           {newPostForm()}
+          <Link to="/admin/dashboard" className="btn btn-danger btn-block mb-5" style={{ overflow: 'hidden', borderRadius: '5px', fontSize: '20px'}}>
+            Back to Dashboard
+          </Link>
         </div>
       </div>
     </Layout>

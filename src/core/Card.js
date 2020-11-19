@@ -48,7 +48,6 @@ const Card = ({
         <button
           onClick={addToCart}
           className="btn btn-success mt-2 mb-2 ml-2"
-          style={{fontSize: "20px"}}
         >
           Add to Cart
         </button>
@@ -83,6 +82,7 @@ const Card = ({
             setRun(!run);
           }}
           className="btn btn-danger mt-2 mb-2"
+          style={{}}
         >
           Remove from Cart
         </button>
@@ -133,12 +133,12 @@ const Card = ({
   };
 
   return (
-    <div className="card" style={{minHeight: '75vh', textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
+    <div className="card shadow-sm" style={{minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
       <ShowImage item={product} url="product"/>
       <div className="card-body" style={{background: 'none'}}>
         {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
         <ul className="list-group list-group-flush">
-          <li className="list-group-item" style={{background: 'none'}}>${product.price}</li>
+          <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
           <li className="list-group-item" style={{background: 'none'}}>
             Dimensions: {product.height}" x {product.length}"
           </li>

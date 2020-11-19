@@ -66,6 +66,10 @@ Link:visited {
   color: #373737;
 }
 
+#dash-link:visited {
+  color: white;
+}
+
 .navbar-brand {
   margin-top: 15px;
   margin-left: 15px;
@@ -94,11 +98,11 @@ Link:visited {
 .elipses-link:visited {
   color: black;
 }
+
 /* Border Radius */
-.btn,
-.jumbotron,
-.nav :hover {
-  border-radius: 0px;
+.btn {
+  border-radius: 5px;
+  font-size: 20px;
 }
 
 /* Cart Badge */

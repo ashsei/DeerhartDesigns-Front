@@ -37,7 +37,8 @@ const Signup = () => {
   };
 
   const signUpForm = () => (
-    <form style={{ height: '60vh', marginTop: '22vh' }}>
+    <form style={{ minHeight: '61vh', marginTop: '22vh' }}>
+      <h2 style={{textAlign: 'center', color: 'white'}}>Sign Up for a Deerhart Designs Account</h2>
       <div className="form-group">
         <input
           onChange={handleChange("name")}
@@ -66,9 +67,10 @@ const Signup = () => {
         />
         {/* !!! Add option for user to see password !!!  */}
       </div>
-      <button onClick={clickSubmit} className="btn btn-secondary btn-block">
+      <button onClick={clickSubmit} className="btn btn-success btn-block">
         Submit
       </button>
+      <Link to="/signin" className="btn btn-secondary btn-block">Already have an account? Click here to Sign In!</Link>
     </form>
   );
 

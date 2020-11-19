@@ -14,22 +14,22 @@ const AdminDashboard = () => {
         <h3 className="card-header">Admin Links</h3>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link className="nav-link" to="/create/category">
+            <Link className="btn btn-secondary btn-block" id="dash-link" to="/create/category">
               Create Category
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to="/create/product">
+            <Link className="btn btn-secondary btn-block" id="dash-link"to="/create/product">
               Create Product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to="/admin/orders">
+            <Link className="btn btn-secondary btn-block" id="dash-link"to="/admin/orders">
               Manage Orders
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to="/admin/products">
+            <Link className="btn btn-secondary btn-block" id="dash-link"to="/admin/products">
               Manage Products
             </Link>
           </li>
@@ -55,11 +55,9 @@ const AdminDashboard = () => {
   
   return (
     <Layout
-      title="Dashboard"
-      description={`Welcome to your DeerhartDesigns dashboard, ${name}!`}
       className="container-fluid"
     >
-      <div className="row" style={{minHeight: '85vh'}}>
+      <div className="row" style={{minHeight: '83vh', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '20px', marginTop: '10px'}}>
         <div className="col-3">{adminLinks()}</div>
         <div className="col-9">{adminInfo()}</div>
       </div>

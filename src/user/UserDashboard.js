@@ -33,12 +33,12 @@ const Dashboard = () => {
         <h4 className="card-header">User Links</h4>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link className="nav-link" to="/cart">
+            <Link className="btn btn-secondary btn-block" id="dash-link" to="/cart">
               My Cart
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to={`/profile/${_id}`}>
+            <Link className="btn btn-secondary btn-block" id="dash-link" to={`/profile/${_id}`}>
               Update Information
             </Link>
           </li>
@@ -48,7 +48,7 @@ const Dashboard = () => {
   };
   const userInfo = () => {
     return (
-      <div className="card mb-5">
+      <div className="card mb-3">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
           <li className="list-group-item">{name}</li>
@@ -105,11 +105,9 @@ const Dashboard = () => {
 
   return (
     <Layout
-      title="Dashboard"
-      description={`Welcome to your DeerhartDesigns dashboard, ${name}!`}
       className="container-fluid"
     >
-      <div className="row">
+      <div className="row mt-3" style={{fontFamily: "Big Shoulders Inline Display, cursive"}}>
         <div className="col-3">{userLinks()}</div>
         <div className="col-9">
           {userInfo()}

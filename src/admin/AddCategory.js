@@ -34,17 +34,18 @@ const AddCategory = () => {
 
   const newCategoryForm = () => (
     <form onSubmit={clickSubmit}>
-      <div className="form-group">
-        <label className="text-muted">Name</label>
+      <div className="form-group" style={{ paddingTop: "20vh", fontFamily: "Big Shoulders Inline Display, cursive", textAlign: "center", color: "white" }}>
+        <h3 >Use this form to create a new product category:</h3>
         <input
           type="text"
           className="form-control"
           onChange={handleChange}
           value={name}
           autoFocus
+          placeholder="New Category Name"
           required
         />
-        <button className="btn btn-outline-primary">Create Category</button>
+        <button className="btn btn-secondary btn-block" style={{ marginTop: '10px', overflow: 'hidden', borderRadius: '5px', fontSize: '20px'}}>Create Category</button>
       </div>
     </form>
   );
@@ -72,7 +73,7 @@ const AddCategory = () => {
 
   const goBack = () => (
     <div className="mt-5">
-      <Link to="/admin/dashboard" className="text-warning">
+      <Link to="/admin/dashboard" className="btn btn-danger btn-block" style={{ overflow: 'hidden', borderRadius: '5px', fontSize: '20px'}}>
         Back to Dashboard
       </Link>
     </div>
@@ -80,11 +81,9 @@ const AddCategory = () => {
 
   return (
     <Layout
-      title="Add a New Category"
-      description={`Hello, ${user.name}! Please use the form below to create a new product category.`}
       className="container-fluid"
     >
-      <div className="row">
+      <div className="row" style={{ display: 'block', overflow: 'auto', fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '83vh'}}>
         <div className="col-md-8 offset-md-2">
           {showSuccess()}
           {showError()}

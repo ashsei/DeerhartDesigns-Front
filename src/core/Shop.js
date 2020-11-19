@@ -56,7 +56,7 @@ const Shop = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-secondary mb-5" style={{fontSize: '20px'}}>
+        <button onClick={loadMore} className="btn btn-secondary mb-5" style={{fontSize: '20px', marginBottom: '10px'}}>
           Load More
         </button>
       )
@@ -92,22 +92,23 @@ const Shop = () => {
 
   return (
     <Layout>
-      <div className="row mr-5">
+      <div className="row mr-5" style={{minHeight: '85vh'}}>
         <div className="col-4 mt-5 mb-4" style={{ color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", fontSize:"20px"}}>
-          <h3 style={{ textAlign: "center" }}>Filter by Category</h3>
-          <ul>
-            <Checkbox
-              categories={categories}
-              handleFilters={(filters) => handleFilters(filters, "category")}
-            />
-          </ul>
-          <h3 style={{ textAlign: "center" }}>Filter by Price</h3>
-          <div>
-            <RadioBox
-              prices={prices}
-              handleFilters={(filters) => handleFilters(filters, "price")}
-            />
-          </div>
+            <h3 style={{ textAlign: 'center', textDecoration: 'underline'}}>Filter by Category</h3>
+            <ul>
+              <Checkbox
+                categories={categories}
+                handleFilters={(filters) => handleFilters(filters, "category")}
+              />
+            </ul>
+            <h3 style={{ textAlign: 'center', textDecoration: 'underline' }}>Filter by Price</h3>
+            <div>
+              <RadioBox
+                prices={prices}
+                handleFilters={(filters) => handleFilters(filters, "price")}
+              />
+        </div>
+          
         </div>
         <div className="col-8" style={{textAlign: "center", color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
           <div className="row mt-5" style={{fontSize: "24px"}}>

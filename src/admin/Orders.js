@@ -37,10 +37,15 @@ const Orders = () => {
   const showOrdersLength = () => {
     if (orders.length > 0) {
       return (
-        <h1 className="text-danger display-2">Total Orders: {orders.length}</h1>
+        <>
+          <h1 style={{ textAlign: 'center', color: 'white', textDecoration: 'underline' }}>Manage Orders</h1>
+          <hr />
+          <h2 style={{textAlign: 'center', color: 'white'}}>Total Orders: {orders.length}</h2>
+          <hr />
+        </> 
       );
     } else {
-      return <h4>No Orders Yet!</h4>;
+      return <h4 style={{textAlign: 'center', color: 'white'}}>No Orders Yet!</h4>;
     }
   };
 
@@ -84,10 +89,8 @@ const Orders = () => {
   return (
     <Layout
       title="Orders"
-      description={`Hello, ${user.name}! Please use this page to manage your orders!`}
-      className="container-fluid"
     >
-      <div className="row">
+      <div className="row" style={{fontFamily: "Big Shoulders Inline Display, cursive"}}>
         <div className="col-md-8 offset-md-2">
           {showOrdersLength()}
           {orders.map((o, oIndex) => {
@@ -95,10 +98,10 @@ const Orders = () => {
               <div
                 className="mt-5"
                 key={oIndex}
-                style={{ borderBottom: "5px solid indigo" }}
+                style={{ borderBottom: "5px solid white" }}
               >
-                <h2 className="mb-5">
-                  <span className="bg-primary">Order ID: {o._id}</span>
+                <h2 className="mb-5" style={{ textAlign: 'center'}}>
+                  <span className="bg-white">Order ID: {o._id}</span>
                 </h2>
 
                 <ul className="list-group">
@@ -117,14 +120,14 @@ const Orders = () => {
                     Delivery Address: {o.address}
                   </li>
                 </ul>
-                <h3 className="mt-4 mb-4 font italic">
+                <h3 className="mt-4 mb-4" style={{ textAlign: 'center', color: 'white', textDecoration: 'underline' }}>
                   Total Produtcs in the Order: {o.products.length}
                 </h3> 
                 {(o.products.map((p, i) => (
                   <div
                     className="mb-4"
                     key={i}
-                    style={{ padding: "20px", border: "1px solid indigo" }}
+                    style={{ padding: "20px", border: "1px solid white", borderRadius: "5px"}}
                   >
                     {showInput("Product Name", p.name)}
                     {showInput("Product Price", p.price)}

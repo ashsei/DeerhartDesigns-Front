@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
 
@@ -34,8 +34,9 @@ const Signin = () => {
   };
 
   const signUpForm = () => (
-    <form style={{height: '60vh', marginTop: '22vh'}}>
+    <form style={{minHeight: '61vh', marginTop: '22vh'}}>
       <div className="form-group">
+        <h2 style={{textAlign: 'center', color: 'white'}}>Sign in to your Deerhart Design's Account</h2>
         <input
           onChange={handleChange("email")}
           type="text"
@@ -54,9 +55,10 @@ const Signin = () => {
         />
         {/* !!! Add option for user to see password !!!  */}
       </div>
-      <button onClick={clickSubmit} className="btn btn-secondary btn-block">
+      <button onClick={clickSubmit} className="btn btn-success btn-block">
         Submit
       </button>
+      <Link to="/signup" className="btn btn-secondary btn-block">Don't Have An Account? Click Here to Sign Up!</Link>
     </form>
   );
 
@@ -100,6 +102,7 @@ const Signin = () => {
       {showError()}
       {signUpForm()}
       {redirectUser()}
+
     </Layout>
   );
 };

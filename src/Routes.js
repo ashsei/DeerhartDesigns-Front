@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Landing from "./core/Landing";
+import About from "./core/About";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PrivateRoute from "./auth/PrivateRoute";
@@ -22,6 +23,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />

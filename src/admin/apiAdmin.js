@@ -101,7 +101,7 @@ export const getProducts = () => {
     .catch((err) => console.log(err));
 };
 
-export const deleteProduct = (userId, token, productId) => {
+export const deleteProduct = (productId, userId, token) => {
   return fetch(`${API}/product/${productId}/${userId}`, {
     method: "DELETE",
     headers: {
