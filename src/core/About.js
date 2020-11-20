@@ -28,6 +28,10 @@ const About = () => {
                             <p>Shipping cost is included in the listed product prices. All shipments will originate in Denver, CO. Please allow a few business days for processing. All shipments should be delivered within two weeks of ordering, and you will receive email updates with tracking information should we be provided with such by the shipping service. Please contact us if you have any further questions regarding your order!</p>
                         </li>
                         <li className="list-item">
+                            <h4>I didn't receive an email confirmation of my order?</h4>
+                            <p>Please check your spam folder as our email processor sometimes gets flagged as spam! If you still can't find a receipt please email <a href="mailto:support@deerhartdesigns.com">support@deerhartdesigns.com</a></p>
+                        </li>
+                        <li className="list-item">
                             <h4>What format can I expect to recieve the art in?</h4>
                             <p>Most of Kangaroo's art is created on canvas with a variety of mediums. Please refer to the individual product information page for size info, and other specific information.</p>
                         </li>
@@ -55,7 +59,7 @@ const About = () => {
                 </div>
                 <div className="contact mb-5" style={{marginBottom: '30px'}}>
                     <h1 style={{ textDecoration: 'underline', textAlign: 'center', marginBottom: "20px" }}>Contact Information</h1>
-                    <h3 style={{textAlign: 'center'}}>Email: <a href="mailto:kangroo@deerhartdesigns.com">Kangaroo@DeerhartDesigns.com</a></h3>
+                    <h3 style={{textAlign: 'center'}}>Email: <a href="mailto:support@deerhartdesigns.com">support@deerhartdesigns.com</a></h3>
                 </div>
                 <div className="buffer mb-5">
                     <hr/>

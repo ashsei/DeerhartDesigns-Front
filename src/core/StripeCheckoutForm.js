@@ -131,9 +131,9 @@ export default function CheckoutForm(items) {
                             Please refer to your 
                                 <a href={`/user/dashboard/payment/${userId}`}>
                                 {" "} Deerhart Designs Dashboard </a> to track the status of your order.
-                                <br />You will also receive email updates - to the email on your profile.
-                                <br /><br />Please email kangaroo@deerhartdesigns.com if you have any questions!
-                                <br /><br/>This page will automatically redirect you to your dashboard in 15 seconds
+                                <br /><br/>You will also receive email updates - to the email on your profile. Please make sure to check your spam folder for any emails from no-reply@deerhartdesigns.com!
+                                <br /><br />Please email support@deerhartdesigns.com if you have any questions!
+                                <br /><br/>This page will automatically redirect you to your dashboard in 30 seconds
                             </p>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ export default function CheckoutForm(items) {
     if (succeeded) {
         setTimeout( () => {
             window.location = ('/user/dashboard');
-        }, 15000)
+        }, 30000)
     }
 
 

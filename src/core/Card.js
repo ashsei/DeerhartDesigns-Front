@@ -15,6 +15,7 @@ const Card = ({
   showDescription = false,
   setRun = (f) => f,
   run = undefined,
+  onShop = false
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
@@ -132,34 +133,73 @@ const Card = ({
     );
   };
 
-  return (
-    <div className="card shadow-sm" style={{minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
-      <ShowImage item={product} url="product"/>
-      <div className="card-body" style={{background: 'none'}}>
-        {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
+  const onShopCard = () => {
+    if (onShop) {
+      return (
+        <div className="card shadow-sm" style={{ minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px' }}
+        onClick={() => window.location.href = `/product/${product._id}`}>
+        <ShowImage item={product} url="product"/>
+        <div className="card-body" style={{background: 'none'}}>
+          {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
+            <li className="list-group-item" style={{background: 'none'}}>
+              Dimensions: {product.height}" x {product.length}"
+            </li>
+            <li className="list-group-item" style={{background: 'none'}}>
+              Added: {moment(product.createdAt).fromNow()}
+            </li>
+            {showDescriptionInfo(showDescription)}
+            <li className="list-group-item" style={{background: 'none'}}>
+              {showStock(product.quantity)}
+            </li>
           <li className="list-group-item" style={{background: 'none'}}>
-            Dimensions: {product.height}" x {product.length}"
-          </li>
-          <li className="list-group-item" style={{background: 'none'}}>
-            Added: {moment(product.createdAt).fromNow()}
-          </li>
-          {showDescriptionInfo(showDescription)}
-          <li className="list-group-item" style={{background: 'none'}}>
-            {showStock(product.quantity)}
-          </li>
-        <li className="list-group-item" style={{background: 'none'}}>
-            {showViewButton(showViewProductButton)}
-            {showBackToShopButton(showBackToShop)} 
-            {showAddToCart(showAddToCartButton)}
-        </li>  
-          </ul>
-        {showRemoveButton(showRemoveProductButton)}
-        {showCartUpdate(cartUpdate)}
-        {shouldRedirect(redirect)}
+              {showViewButton(showViewProductButton)}
+              {showBackToShopButton(showBackToShop)} 
+              {showAddToCart(showAddToCartButton)}
+          </li>  
+            </ul>
+          {showRemoveButton(showRemoveProductButton)}
+          {showCartUpdate(cartUpdate)}
+          {shouldRedirect(redirect)}
+        </div>
       </div>
-    </div>
+      )
+    } else {
+      return (
+        <div className="card shadow-sm" style={{ minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px' }}>
+          <ShowImage item={product} url="product"/>
+          <div className="card-body" style={{background: 'none'}}>
+            {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
+              <li className="list-group-item" style={{background: 'none'}}>
+                Dimensions: {product.height}" x {product.length}"
+              </li>
+              <li className="list-group-item" style={{background: 'none'}}>
+                Added: {moment(product.createdAt).fromNow()}
+              </li>
+              {showDescriptionInfo(showDescription)}
+              <li className="list-group-item" style={{background: 'none'}}>
+                {showStock(product.quantity)}
+              </li>
+            <li className="list-group-item" style={{background: 'none'}}>
+                {showViewButton(showViewProductButton)}
+                {showBackToShopButton(showBackToShop)} 
+                {showAddToCart(showAddToCartButton)}
+            </li>  
+              </ul>
+            {showRemoveButton(showRemoveProductButton)}
+            {showCartUpdate(cartUpdate)}
+            {shouldRedirect(redirect)}
+          </div>
+        </div>
+      )
+    }
+  }
+
+  return (
+    onShopCard()
   );
 };
 
