@@ -107,7 +107,7 @@ const Dashboard = () => {
     <Layout
       className="container-fluid"
     >
-      <div className="row mt-3" style={{fontFamily: "Big Shoulders Inline Display, cursive"}}>
+      <div className="row mt-3" style={{fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '84vh'}}>
         <div className="col-3">{userLinks()}</div>
         <div className="col-9">
           {userInfo()}

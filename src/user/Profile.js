@@ -58,7 +58,7 @@ const Profile = ({ match }) => {
 
   const redirectUser = (success) => {
     if (success) {
-      return <Redirect to="/cart" />;
+      return <Redirect to="/user/dashboard" />;
     }
   };
 
@@ -102,9 +102,11 @@ const Profile = ({ match }) => {
     <Layout
       className="container-fluid"
     >
-      <h2 className="mb-4 mt-5" style={{textAlign: 'center', color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textDecoration: 'underline' }}>Update Your DeerhartDesigns Account Profile</h2>
+      <div className="container" style={{minHeight: '81vh' }}>
+      <h2 className="mb-4 mt-5" style={{textAlign: 'center', color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textDecoration: 'underline'}}>Update Your DeerhartDesigns Account Profile</h2>
       {profileUpdate(name, email, password)}
-      {redirectUser(success)}
+        {redirectUser(success)}
+      </div>
     </Layout>
   );
 };

@@ -33,7 +33,7 @@ const Cart = () => {
   };
 
   const noItems = () => (
-    <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '30vh', marginBottom: '45vh'}}>
+    <h2 style={{textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '30vh', marginBottom: '45vh', minHeight: '11vh'}}>
       Your cart is empty. <br /> <Link to="/shop" style={{textDecoration: 'underline'}}>Continue Shopping</Link>
     </h2>
   );

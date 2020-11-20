@@ -53,9 +53,12 @@ const About = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="contact">
-                    <h1 style={{ textDecoration: 'underline', textAlign: 'center' }}>Contact Information</h1>
-                    <h3>Email: <a href="mailto:kangroo@deerhartdesigns.com">Kangaroo@DeerharDesigns.com</a></h3>
+                <div className="contact mb-5" style={{marginBottom: '30px'}}>
+                    <h1 style={{ textDecoration: 'underline', textAlign: 'center', marginBottom: "20px" }}>Contact Information</h1>
+                    <h3 style={{textAlign: 'center'}}>Email: <a href="mailto:kangroo@deerhartdesigns.com">Kangaroo@DeerhartDesigns.com</a></h3>
+                </div>
+                <div className="buffer mb-5">
+                    <hr/>
                 </div>
             </div>
         </Layout>
