@@ -82,7 +82,6 @@ const AddCategory = () => {
   return (
     <Layout
       className="container-fluid"
-      viewHeight="85vh"
     >
       <div className="row" style={{ display: 'block', overflow: 'auto', fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '100%'}}>
         <div className="col-md-8 offset-md-2">

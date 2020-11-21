@@ -27,9 +27,6 @@ const Shop = () => {
         setCategories(data);
       }
     });
-    if (localStorage.getItem('cart').length > 0) {
-      setCart(localStorage.getItem('cart'));
-    }
   };
 
   const loadFilteredResults = (newFilters) => {
