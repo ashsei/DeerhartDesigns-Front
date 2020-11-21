@@ -27,7 +27,12 @@ const Shop = () => {
         setCategories(data);
       }
     });
+    setCartItems()
   };
+
+  const setCartItems = () => {
+    setCart(JSON.parse(localStorage.getItem("cart")))
+  }
 
   const loadFilteredResults = (newFilters) => {
     getFilteredProducts(skip, limit, newFilters).then((data) => {
@@ -57,7 +62,7 @@ const Shop = () => {
   const showButtons = () => {
     if (!goToCart()) {
       return (
-        <button className="btn btn-secondary btn-block mx-auto" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
+        <button className="btn btn-secondary btn-block mt-4" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
       )
     } else {
       return (
@@ -69,7 +74,7 @@ const Shop = () => {
     } 
   }
   const goToCart = () => {
-    if (cart.length > 2) {
+    if (cart.length > 0) {
       return (
         <button className="btn btn-success btn-block mx-auto" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
       )
