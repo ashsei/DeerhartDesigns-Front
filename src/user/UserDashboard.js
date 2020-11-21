@@ -61,11 +61,13 @@ const Dashboard = () => {
     );
   };
   const purchaseHistory = (history) => {
-    if (!history) {
+    console.log(history)
+    if (history.length === 0) {
       return(
         <div className="card mb-5">
           <h3 className="card-header">Purchase History</h3>
-          <h6>No Purchase History Yet!</h6>
+          <br/>
+          <h6 style={{textAlign: "center", paddingBottom: '20px'}}>No Purchase History Yet!</h6>
         </div>
       )
     } else {

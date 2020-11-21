@@ -37,7 +37,7 @@ const Signup = () => {
   };
 
   const signUpForm = () => (
-    <form style={{ minHeight: '61vh', marginTop: '22vh' }}>
+    <form className="mx-auto" style={{ paddingTop: 70 }}>
       <h2 style={{textAlign: 'center', color: 'white'}}>Sign Up for a Deerhart Designs Account</h2>
       <div className="form-group">
         <input

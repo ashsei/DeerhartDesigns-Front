@@ -33,9 +33,9 @@ const AddCategory = () => {
   };
 
   const newCategoryForm = () => (
-    <form onSubmit={clickSubmit}>
+    <form onSubmit={clickSubmit} className="mx-auto">
       <div className="form-group" style={{ paddingTop: "20vh", fontFamily: "Big Shoulders Inline Display, cursive", textAlign: "center", color: "white" }}>
-        <h3 >Use this form to create a new product category:</h3>
+        <h3>Use this form to create a new product category:</h3>
         <input
           type="text"
           className="form-control"
@@ -82,8 +82,9 @@ const AddCategory = () => {
   return (
     <Layout
       className="container-fluid"
+      viewHeight="85vh"
     >
-      <div className="row" style={{ display: 'block', overflow: 'auto', fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '83vh'}}>
+      <div className="row" style={{ display: 'block', overflow: 'auto', fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '100%'}}>
         <div className="col-md-8 offset-md-2">
           {showSuccess()}
           {showError()}

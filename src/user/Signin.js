@@ -34,7 +34,7 @@ const Signin = () => {
   };
 
   const signUpForm = () => (
-    <form style={{minHeight: '61vh', marginTop: '22vh'}}>
+    <form className="mx-auto" style={{fontFamily: "Big Shoulders Inline Display, cursive", paddingTop: '100px'}}>
       <div className="form-group">
         <h2 style={{textAlign: 'center', color: 'white'}}>Sign in to your Deerhart Design's Account</h2>
         <input
@@ -64,8 +64,8 @@ const Signin = () => {
 
   const showError = () => (
     <div
-      className="alert alert-danger"
-      style={{ display: error ? "" : "none", marginBottom: '-150px', marginTop: '80px'  }}
+      className="alert alert-danger mt-5"
+      style={{ display: error ? "" : "none", fontFamily: "Big Shoulders Inline Display, cursive"  }}
     >
       {error}
     </div>
@@ -96,7 +96,7 @@ const Signin = () => {
 
   return (
     <Layout
-      className="container m-20 col-md-8 offset-md-2"
+      className="container-fluid"
     >
       {showLoading()}
       {showError()}
