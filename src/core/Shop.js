@@ -17,7 +17,7 @@ const Shop = () => {
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
-  const [cart, setCart] = useState([]);
+  
 
   const init = () => {
     getCategories().then((data) => {
@@ -29,10 +29,6 @@ const Shop = () => {
     });
     
   };
-
-  const setCartItems = () => {
-    setCart(JSON.parse(localStorage.getItem("cart")))
-  }
 
   const loadFilteredResults = (newFilters) => {
     getFilteredProducts(skip, limit, newFilters).then((data) => {
@@ -59,29 +55,7 @@ const Shop = () => {
     });
   };
 
-  const showButtons = () => {
-    if (!goToCart()) {
-      return (
-        <button className="btn btn-secondary btn-block mt-4" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
-      )
-    } else {
-      return (
-        <>
-          <button className="btn btn-secondary btn-block mx-auto" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
-          {goToCart()}
-        </>
-      )
-    } 
-  }
-  const goToCart = () => {
-    if (JSON.parse(localStorage.getItem("cart")).length > 0) {
-      return (
-        <button className="btn btn-success btn-block mx-auto" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
-      )
-    } else {
-      return undefined
-    }
-  }
+ 
 
   const loadMoreButton = () => {
     return (
@@ -95,7 +69,6 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    setCartItems(cart)
     init();
     loadFilteredResults(skip, limit, myFilters.filters);
   }, []);
@@ -126,7 +99,8 @@ const Shop = () => {
     <Layout className="container-fluid">
       <div className="row mt-3">
         <div className="col-3" id="filter-button">
-            {showButtons()}
+            <button className="btn btn-secondary btn-block" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
+            <button className="btn btn-success btn-block" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
         </div>
         <div className="col-9 mt-3" id="searchbar">
           <Search/>
