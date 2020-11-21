@@ -98,11 +98,11 @@ const Shop = () => {
   return (
     <Layout className="container-fluid">
       <div className="row mt-3">
-        <div className="col-3" id="filter-button">
+        <div className="col-3 mx-auto" id="filter-button">
             <button className="btn btn-secondary btn-block" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
             <button className="btn btn-success btn-block" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
         </div>
-        <div className="col-9 mt-3" id="searchbar">
+        <div className="col-9 mt-2" id="searchbar">
           <Search/>
         </div>
       </div>
