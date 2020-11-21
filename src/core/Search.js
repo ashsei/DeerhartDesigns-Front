@@ -58,15 +58,29 @@ const Search = () => {
     }
   };
 
+  const endOfResults = (searched, results) => {
+    if (searched && results.length > 0)  {
+      return (
+        <>
+          <>End of Results. Please see more products we think you may like below!</> 
+          <br />
+        </>)
+    } else {
+      return null
+    }
+  }
+
   const searchedProducts = (results = []) => {
     return (
       <div>
-        <h2 className="mt-4 mb-4">{searchMessage(searched, results)}</h2>
-        <div className="col mr-auto ml-auto" >
+        <h2 className="mt-4 mb-4" style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textAlign: 'center'}}>{searchMessage(searched, results)}</h2>
+        <div className="col mb-5">
           {results.map((product, i) => (
-            <Card key={i} product={product} />
+            <Card key={i} product={product} onShop={true}/>
           ))}
+          <h2 className="mt-4 mb-4" style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textAlign: 'center'}}>{endOfResults(searched, results)}</h2>
         </div>
+        
       </div>
     );
   };

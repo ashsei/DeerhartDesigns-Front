@@ -186,7 +186,7 @@ const Card = ({
       )
     } else {
       return (
-        <div className="card shadow-sm" style={{ minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px' }}>
+        <div className="card shadow-sm mb-2" style={{ minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px' }}>
           <ShowImage item={product} url="product"/>
           <div className="card-body" style={{background: 'none'}}>
             {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}

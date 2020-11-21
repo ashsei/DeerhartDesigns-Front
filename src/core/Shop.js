@@ -60,12 +60,12 @@ const Shop = () => {
   const showButtons = () => {
     if (!goToCart()) {
       return (
-        <button className="btn btn-secondary btn-block mt-4" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
+        <button className="btn btn-secondary btn-block mx-auto" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
       )
     } else {
       return (
         <>
-          <button className="btn btn-secondary btn-block" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
+          <button className="btn btn-secondary btn-block mx-auto" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
           {goToCart()}
         </>
       )
@@ -74,7 +74,7 @@ const Shop = () => {
   const goToCart = () => {
     if (cart.length > 2) {
       return (
-        <button className="btn btn-success btn-block mt-2" style={{ fontFamily: "Big Shoulders Inline Display, cursive" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
+        <button className="btn btn-success btn-block mx-auto" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
       )
     } else {
       return undefined
@@ -123,9 +123,7 @@ const Shop = () => {
     <Layout className="container-fluid">
       <div className="row mt-3">
         <div className="col-3" id="filter-button">
-          <div className="input-group input-group-lg">
             {showButtons()}
-          </div>
         </div>
         <div className="col-9 mt-3" id="searchbar">
           <Search/>
@@ -134,7 +132,7 @@ const Shop = () => {
       
       
         <div className="modal"  id="filterModal" tabIndex="-1" role="dialog">
-          <div className="modal-dialog modal-dialog-centered" role="document" style={{maxWidth: '40vw'}}>
+          <div className="modal-dialog modal-dialog-centered mx-auto text-left" role="document" style={{maxWidth: '50vw'}}>
             <div className="modal-content" style={{background: 'lightgrey', fontFamily:"Big Shoulders Inline Display, cursive"}}>
               <div className="modal-header">
                 <h5 className="modal-title">Filter Products</h5>
@@ -143,14 +141,15 @@ const Shop = () => {
                 </button> 
               </div>
               <div className="modal-body">
-                <h3 style={{ textAlign: 'center', textDecoration: 'underline'}}>Filter by Category</h3>
-                <ul>
+                <h3 style={{ textAlign: 'left', textDecoration: 'underline'}}>Filter by Category</h3>
+                <div className="ml-5">
                   <Checkbox
                     categories={categories}
                     handleFilters={(filters) => handleFilters(filters, "category")}
                   />
-                </ul>
-                <h3 style={{ textAlign: 'center', textDecoration: 'underline' }}>Filter by Price</h3>
+                </div>
+                <br />
+                <h3 style={{ textAlign: 'left', textDecoration: 'underline' }}>Filter by Price</h3>
                 <div>
                   <RadioBox
                     prices={prices}
