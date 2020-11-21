@@ -27,7 +27,7 @@ const Shop = () => {
         setCategories(data);
       }
     });
-    setCartItems(cart)
+    
   };
 
   const setCartItems = () => {
@@ -74,7 +74,7 @@ const Shop = () => {
     } 
   }
   const goToCart = () => {
-    if (cart.length > 0) {
+    if (JSON.parse(localStorage.getItem("cart")).length > 0) {
       return (
         <button className="btn btn-success btn-block mx-auto" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth:"250px" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
       )
@@ -95,6 +95,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
+    setCartItems(cart)
     init();
     loadFilteredResults(skip, limit, myFilters.filters);
   }, []);
