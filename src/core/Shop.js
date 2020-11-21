@@ -27,7 +27,7 @@ const Shop = () => {
         setCategories(data);
       }
     });
-    setCartItems()
+    setCartItems(cart)
   };
 
   const setCartItems = () => {
