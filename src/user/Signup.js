@@ -96,9 +96,7 @@ const Signup = () => {
 
   return (
     <Layout
-      title="Sign Up"
-      description="Sign Up for a Deerhart Designs account!"
-      className="container col-md-8 offset-md-2"
+      className="container col-md-8"
     >
       {showSuccess()}
       {showError()}

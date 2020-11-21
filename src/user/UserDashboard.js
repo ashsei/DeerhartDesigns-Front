@@ -50,11 +50,11 @@ const Dashboard = () => {
     return (
       <div className="card mb-3">
         <h3 className="card-header">User Information</h3>
-        <ul className="list-group">
-          <li className="list-group-item">{name}</li>
-          <li className="list-group-item">{email}</li>
+        <ul className="list-group text-center">
+          <li className="list-group-item">Account Name: {name}</li>
+          <li className="list-group-item">Account Email: {email}</li>
           <li className="list-group-item">
-            {role === 1 ? "Admin" : "Registered User"}
+            Account Role: {role === 1 ? "Admin" : "Registered User"}
           </li>
         </ul>
       </div>
@@ -108,8 +108,8 @@ const Dashboard = () => {
       className="container-fluid"
     >
       <div className="row mt-3" style={{fontFamily: "Big Shoulders Inline Display, cursive", minHeight: '84vh'}}>
-        <div className="col-3">{userLinks()}</div>
-        <div className="col-9">
+        <div className="col-md-3 mb-3">{userLinks()}</div>
+        <div className="col-md-9">
           {userInfo()}
           {purchaseHistory(history)}
         </div>

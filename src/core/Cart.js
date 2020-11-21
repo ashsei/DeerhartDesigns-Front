@@ -44,14 +44,14 @@ const Cart = () => {
       className="container-fluid"
     >
       {items.length > 0 ? (
-        <div className="row" style={{ marginBottom: '25vh' }}>
-          <div className="col-6">
+        <div className="row" style={{ marginBottom: '10vh' }}>
+          <div className="col-md-6 mb-4">
             {showItems(items)}
           </div>
-          <div className="col-6">
+          <div className="col-md-6">
             <h2 style={{ textAlign: 'center', color: 'white', background: 'none', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", marginTop: '10px', fontSize: '40px' }}>Cart Summary / Checkout</h2>
             <hr />
-            <Stripe products={items} />
+            <Stripe products={items}/>
           </div>
         </div>
       ) : (noItems())}

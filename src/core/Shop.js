@@ -5,6 +5,7 @@ import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./FixedPrices";
+import Search from "./Search"
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -16,6 +17,7 @@ const Shop = () => {
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const init = () => {
     getCategories().then((data) => {
@@ -25,6 +27,9 @@ const Shop = () => {
         setCategories(data);
       }
     });
+    if (localStorage.getItem('cart').length > 0) {
+      setCart(localStorage.getItem('cart'));
+    }
   };
 
   const loadFilteredResults = (newFilters) => {
@@ -52,11 +57,35 @@ const Shop = () => {
     });
   };
 
+  const showButtons = () => {
+    if (!goToCart()) {
+      return (
+        <button className="btn btn-secondary btn-block mt-4" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px'}}>Filter Products</button>
+      )
+    } else {
+      return (
+        <>
+          <button className="btn btn-secondary btn-block" data-toggle="modal" data-target="#filterModal" style={{ fontFamily: "Big Shoulders Inline Display, cursive", maxWidth: '250px' }}>Filter Products</button>
+          {goToCart()}
+        </>
+      )
+    } 
+  }
+  const goToCart = () => {
+    if (cart.length > 2) {
+      return (
+        <button className="btn btn-success btn-block mt-2" style={{ fontFamily: "Big Shoulders Inline Display, cursive" }} onClick={() => window.location = ('/cart')}>Go To Cart</button>
+      )
+    } else {
+      return undefined
+    }
+  }
+
   const loadMoreButton = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-secondary mb-5" style={{fontSize: '20px', marginBottom: '10px'}}>
+        <button onClick={loadMore} className="btn btn-secondary btn-block mb-5" style={{fontSize: '20px', fontFamily: "Big Shoulders Inline Display, cursive"}}>
           Load More
         </button>
       )
@@ -71,7 +100,7 @@ const Shop = () => {
   const handleFilters = (filters, filterBy) => {
     const newFilters = { ...myFilters };
     newFilters.filters[filterBy] = filters;
-    if (filterBy == "price") {
+    if (filterBy === "price") {
       let priceValues = handlePrice(filters);
       newFilters.filters[filterBy] = priceValues;
     }
@@ -91,38 +120,66 @@ const Shop = () => {
   };
 
   return (
-    <Layout>
-      <div className="row mr-5" style={{minHeight: '85vh'}}>
-        <div className="col-4 mt-5 mb-4" style={{ color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", fontSize:"20px"}}>
-            <h3 style={{ textAlign: 'center', textDecoration: 'underline'}}>Filter by Category</h3>
-            <ul>
-              <Checkbox
-                categories={categories}
-                handleFilters={(filters) => handleFilters(filters, "category")}
-              />
-            </ul>
-            <h3 style={{ textAlign: 'center', textDecoration: 'underline' }}>Filter by Price</h3>
-            <div>
-              <RadioBox
-                prices={prices}
-                handleFilters={(filters) => handleFilters(filters, "price")}
-              />
-        </div>
-          
-        </div>
-        <div className="col-8" style={{textAlign: "center", color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
-          <div className="row mt-5" style={{fontSize: "24px"}}>
-            {filteredResults.map((product, i) => (
-              <div key={i} className="col-12 mb-3">
-                <Card product={product} onShop={true}/>
-              </div>
-            ))}
+    <Layout className="container-fluid">
+      <div className="row mt-3">
+        <div className="col-3" id="filter-button">
+          <div className="input-group input-group-lg">
+            {showButtons()}
           </div>
-          <hr />
-          {loadMoreButton()}
+        </div>
+        <div className="col-9 mt-3" id="searchbar">
+          <Search/>
         </div>
       </div>
-    </Layout>
+      
+      
+        <div className="modal"  id="filterModal" tabIndex="-1" role="dialog">
+          <div className="modal-dialog modal-dialog-centered" role="document" style={{maxWidth: '40vw'}}>
+            <div className="modal-content" style={{background: 'lightgrey', fontFamily:"Big Shoulders Inline Display, cursive"}}>
+              <div className="modal-header">
+                <h5 className="modal-title">Filter Products</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button> 
+              </div>
+              <div className="modal-body">
+                <h3 style={{ textAlign: 'center', textDecoration: 'underline'}}>Filter by Category</h3>
+                <ul>
+                  <Checkbox
+                    categories={categories}
+                    handleFilters={(filters) => handleFilters(filters, "category")}
+                  />
+                </ul>
+                <h3 style={{ textAlign: 'center', textDecoration: 'underline' }}>Filter by Price</h3>
+                <div>
+                  <RadioBox
+                    prices={prices}
+                    handleFilters={(filters) => handleFilters(filters, "price")}
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-success" data-dismiss="modal">Apply Filters</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div className="container-fluid">
+        <div className="row"> 
+          <div className="col-md-12">
+            <div className="row mt-3" style={{fontSize: "24px"}}>
+              {filteredResults.map((product, i) => (
+                <div key={i} className="col-md-6 mb-3 card-group">
+                    <Card product={product} onShop={true}/>
+                </div>
+              ))}
+            </div>
+            <hr />
+            {loadMoreButton()}
+          </div>
+          </div>
+      </div>
+      </Layout>
   );
 };
 

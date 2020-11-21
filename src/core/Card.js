@@ -32,10 +32,12 @@ const Card = ({
     );
   };
   const addToCart = () => {
-    addItem(product, () => {
-      setRedirect(true);
-    });
+    addItem(product);
   };
+
+  const goToCart = () => {
+    setRedirect(true);
+  }
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
@@ -46,14 +48,27 @@ const Card = ({
   const showAddToCart = (showAddToCartButton) => {
     return (
       (showAddToCartButton && product.quantity > 0) ? (
-        <button
-          onClick={addToCart}
-          className="btn btn-success mt-2 mb-2 ml-2"
-        >
-          Add to Cart
-        </button>
-      
-        
+        <>
+          <button onClick={addToCart} className="btn btn-success" data-toggle="modal" data-target="#addToCartModal" style={{marginLeft: 'auto', marginRight: 'auto', width: '100px'}}>Add to Cart</button>
+          <div className="modal" id="addToCartModal" tabIndex="-1" role="dialog" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header" style={{ textAlign: 'center' }}>
+                  <h4 className="modal-title w-100">{product.name} has been added to your cart!</h4>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  <p>Would you like to continue shopping?</p>
+                  <button className="btn btn-secondary mt-2 mb-2 ml-2" data-dismiss="modal" onClick={()=> {window.location='/shop'}}>Continue Shopping</button>
+                  <button onClick={goToCart} className="btn btn-success mt-2 mb-2 ml-2" data-dismiss="modal">Go To Checkout</button>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </>
+          
       ) : (null)
     );
   };
@@ -91,7 +106,7 @@ const Card = ({
     );
   };
 
-  const showBackToShopButton = (showBackToShop) => {
+  const showBackToShopButton = (showBackToShop, onCart) => {
     return (
       showBackToShop && (
         <Link to={`/shop`} className="ml-2">
@@ -136,34 +151,38 @@ const Card = ({
   const onShopCard = () => {
     if (onShop) {
       return (
-        <div className="card shadow-sm" style={{ minHeight: '75vh', textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px' }}
-        onClick={() => window.location.href = `/product/${product._id}`}>
-        <ShowImage item={product} url="product"/>
-        <div className="card-body" style={{background: 'none'}}>
-          {showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
-            <li className="list-group-item" style={{background: 'none'}}>
-              Dimensions: {product.height}" x {product.length}"
-            </li>
-            <li className="list-group-item" style={{background: 'none'}}>
-              Added: {moment(product.createdAt).fromNow()}
-            </li>
-            {showDescriptionInfo(showDescription)}
-            <li className="list-group-item" style={{background: 'none'}}>
-              {showStock(product.quantity)}
-            </li>
-          <li className="list-group-item" style={{background: 'none'}}>
-              {showViewButton(showViewProductButton)}
-              {showBackToShopButton(showBackToShop)} 
-              {showAddToCart(showAddToCartButton)}
-          </li>  
-            </ul>
-          {showRemoveButton(showRemoveProductButton)}
-          {showCartUpdate(cartUpdate)}
-          {shouldRedirect(redirect)}
+        <div className="card" style={{ textAlign: 'center', color: 'black', background: '#d6d6d6', border: 'none', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '24px'}}>
+          <div className="card" onClick={()=> window.location = `/product/${product._id}`} >
+            <ShowImage item={product} url="product" />
+          </div>
+            <div className="card-content my-auto" style={{ background: 'none'}}>
+              <div className="row my-auto" style={{ display: 'flex', alignItems: 'center'}}>
+                <div className="col-12">{showTitle ? (<div className="card-title" style={{ fontSize: '40px', textDecoration: 'underline' }}>{product.name}</div>) : null}</div>
+                  <div className="col">
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item" style={{background: 'none'}}>Price: $ {product.price}.00</li>
+                      <li className="list-group-item" style={{background: 'none'}}>
+                        Height: {product.height} inches
+                      </li>
+                      <li className="list-group-item" style={{background: 'none'}}>
+                        Length: {product.length} inches
+                      </li>
+                      <li className="list-group-item" style={{background: 'none'}}>
+                        Added: {moment(product.createdAt).fromNow()}
+                      </li>
+                    </ul>
+                  </div>
+                <div className="col">
+                  {showStock(product.quantity)}
+                  <hr/>
+                  {showViewButton(showViewProductButton)}
+                  <hr/>
+                  {showAddToCart(showAddToCartButton)}
+                  {shouldRedirect(redirect)}
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
       )
     } else {
       return (

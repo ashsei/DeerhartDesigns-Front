@@ -58,8 +58,8 @@ const AdminDashboard = () => {
       className="container-fluid"
     >
       <div className="row" style={{minHeight: '83vh', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '20px', marginTop: '10px'}}>
-        <div className="col-3">{adminLinks()}</div>
-        <div className="col-9">{adminInfo()}</div>
+        <div className="col-md-3">{adminLinks()}</div>
+        <div className="col-md-9">{adminInfo()}</div>
       </div>
     </Layout>
   );

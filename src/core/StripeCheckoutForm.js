@@ -9,6 +9,7 @@ import { createOrder } from "./apiCore";
 import { emptyCart } from "./CartHelpers.js";
 import { isAuthenticated } from "../auth";
 import jQuery from "jquery";
+import {update, updateUser} from "../user/apiUser"
 
 export default function CheckoutForm(items) {
     const [succeeded, setSucceeded] = useState(false);
@@ -17,7 +18,11 @@ export default function CheckoutForm(items) {
     const [disabled, setDisabled] = useState(true);
     const [clientSecret, setClientSecret] = useState('');
     const [data, setData] = useState({
-        address: "",
+        streetAddress1: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        email: "",
         amount: 0
     });
     const stripe = useStripe();
@@ -44,7 +49,7 @@ export default function CheckoutForm(items) {
                 setClientSecret(data.clientSecret);
                 setData({ ...data, amount: data.amount });
             });
-    }, []);
+    }, [items]);
 
     const cardStyle = {
         style: {
@@ -71,21 +76,22 @@ export default function CheckoutForm(items) {
         setError(event.error ? event.error.message : "");
     };
 
-    const handleAddress = (event) => {
-        setData({ ...data, address: event.target.value });
+    const handleAddress = name => (event) => {
+        setData({ ...data, [name]: event.target.value });
     };
+
 
     const proccessOrder = (items, succeeded, userId, token, payload) => {
         const products = [];
         items.items.products.forEach(product => {
             products.push({ name: product.name, price: product.price, count: product.count, id: product._id });
         })
-        console.log(products)
+        const address = data.streetAddress1 + ', ' + data.city + ', ' + data.state + ', ' + data.zipCode
         const createOrderData = {
             products: products,
             transaction_id: payload.paymentIntent.id,
             amount: payload.paymentIntent.amount,
-            address: data.address,
+            address: address,
         };
         createOrder(userId, token, createOrderData)
             .then((response) => {
@@ -109,7 +115,7 @@ export default function CheckoutForm(items) {
             setError(`${payload.error.message}`);
             setProcessing(false);
             jQuery('#errorModal').modal('show')
-        } else if (!payload.error && data.address){
+        } else {
             setError(null);
             setProcessing(false);
             setSucceeded(true);
@@ -129,7 +135,7 @@ export default function CheckoutForm(items) {
                         <div className="modal-body" style={{ textAlign: 'center'}}>
                             <p style={{ marginTop: '10px', fontFamily: "Big Shoulders Inline Display, cursive", margin: 'auto', fontSize: '20px',}}>
                             Please refer to your 
-                                <a href={`/user/dashboard/payment/${userId}`}>
+                                <a href={`/user/dashboard/`}>
                                 {" "} Deerhart Designs Dashboard </a> to track the status of your order.
                                 <br /><br/>You will also receive email updates - to the email on your profile. Please make sure to check your spam folder for any emails from no-reply@deerhartdesigns.com!
                                 <br /><br />Please email support@deerhartdesigns.com if you have any questions!
@@ -177,22 +183,33 @@ export default function CheckoutForm(items) {
         <>
             {displaySuccess()}
             {displayError()}
-        <form id="payment-form" onSubmit={handleSubmit}>
+        <form id="payment-form" onSubmit={handleSubmit} style={{marginLeft:"auto", marginRight:"auto", color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
             <h2 style={{color: '#8cf781', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '30px', textAlign: 'center'}}>Cart Total: ${data.amount}.00 </h2>
             <hr />
-            <div className="form-group mb-3">
-                <label style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", fontSize: '25px'}}>Delivery Address:</label>
-                <textarea
-                    onChange={handleAddress}
-                    className="form-control"
-                    value={data.address}
-                    placeholder="Ex: 123 Cherokee Way, Denver, CO 80212"
-                    required
-                />
+            <h3 style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textAlign: 'center', textDecoration: 'underline', marginBottom:'5px' }}>Delivery Address</h3>
+
+                    <div className="form-group">
+                    <label htmlFor="streetAddress">Street Address</label>
+                        <input className="form-control" type="text" id="streetAddress1" placeholder="1234 Main Street Apt. 12" onChange={handleAddress('streetAddress1')} required />
+                    </div>
+                
+                    <div className="form-row">
+                        <div className="form-group col-md-7">
+                            <label htmlFor="city">City</label> 
+                            <input className="form-control" type="text" id="city" placeholder="Denver" onChange={handleAddress('city')} required />
+                        </div>
+                        <div className="form-group col-md-2">
+                            <label htmlFor="state">State</label>
+                            <input className="form-control" type="text" id="state" placeholder="CO" onChange={handleAddress('state')} required />
+                        </div>
+                        <div className="form-group col-md-3">
+                            <label htmlFor="zip">Zip</label>
+                            <input className="form-control"type="text" id="zip" placeholder="80205" onChange={handleAddress('zipCode')} required />
+                        </div>
+                    </div>    
                 <hr />
                 <p style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '20px', textAlign: 'center'}}>Standard shipping costs and taxes are included in the product price.<br/> Please allow up to two weeks for processing and delivery.</p>
                 <hr />
-            </div>
             <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
             <button
                 disabled={processing || disabled || succeeded}
