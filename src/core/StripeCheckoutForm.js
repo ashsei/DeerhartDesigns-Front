@@ -60,7 +60,7 @@ export default function CheckoutForm(items) {
                 fontSize: "16px",
                 "::placeholder": {
                     color: "#373737"
-                }
+                },
             },
             invalid: {
                 color: "red",
@@ -183,17 +183,16 @@ export default function CheckoutForm(items) {
         <>
             {displaySuccess()}
             {displayError()}
-        <form id="payment-form" onSubmit={handleSubmit} style={{marginLeft:"auto", marginRight:"auto", color: 'white', fontFamily: "Big Shoulders Inline Display, cursive"}}>
-            <h2 style={{color: '#8cf781', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '30px', textAlign: 'center'}}>Cart Total: ${data.amount}.00 </h2>
+        <form id="payment-form" onSubmit={handleSubmit} style={{marginLeft:"auto", marginRight:"auto", color: 'white', backgroundColor:"grey", padding: '5px', borderRadius: '5px'}}>
+            <h1 style={{color: '#8cf781', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '30px', textAlign: 'center'}}>Cart Total: ${data.amount}.00 </h1>
             <hr />
-            <h3 style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive", textAlign: 'center', textDecoration: 'underline', marginBottom:'5px' }}>Delivery Address</h3>
-
-                    <div className="form-group">
+            <h5 style={{color: 'white', fontFamily: "Courier, monospace", textAlign: 'center', textDecoration: 'underline', marginBottom:'5px'}}>Delivery Address</h5>
+                    <div className="form-group" style={{ fontFamily: "Courier, monospace", marginTop:'20px', marginLeft:'5px', marginRight:'5px' }}>
                     <label htmlFor="streetAddress">Street Address</label>
                         <input className="form-control" type="text" id="streetAddress1" placeholder="1234 Main Street Apt. 12" onChange={handleAddress('streetAddress1')} required />
                     </div>
                 
-                    <div className="form-row">
+                    <div className="form-row" style={{ fontFamily: "Courier, monospace", marginLeft:'2px', marginRight:'1px'}}>
                         <div className="form-group col-md-7">
                             <label htmlFor="city">City</label> 
                             <input className="form-control" type="text" id="city" placeholder="Denver" onChange={handleAddress('city')} required />
@@ -208,9 +207,8 @@ export default function CheckoutForm(items) {
                         </div>
                     </div>    
                 <hr />
-                <p style={{color: 'white', fontFamily: "Big Shoulders Inline Display, cursive",  marginTop: '10px', fontSize: '20px', textAlign: 'center'}}>Standard shipping costs and taxes are included in the product price.<br/> Please allow up to two weeks for processing and delivery.</p>
-                <hr />
-            <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+            <h5 style={{color: 'white', fontFamily: "Courier, monospace",  marginTop: '10px', textDecoration: 'underline', textAlign: 'center'}}>Credit Card Information</h5>
+                <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
             <button
                 disabled={processing || disabled || succeeded}
                 id="submit"
@@ -222,8 +220,12 @@ export default function CheckoutForm(items) {
                         `Pay $${data.amount}.00`
                     )}
                 </span>
-            </button>
-                
+                </button>
+            <p className="text-center"><a href="https://stripe.com" target="_blank"><img src={require('../stripe.svg')} id="stripe" style={{maxWidth: "150px", marginTop: '10px'}}/></a></p>
+            <hr />
+            <p style={{ color: 'white', fontFamily: "Courier, monospace", marginTop: '5px', fontSize: '16px', textAlign: 'center' }}>Standard shipping costs and taxes are included in the product price.</p> 
+            <hr />
+            <p style={{ color: 'white', fontFamily: "Courier, monospace", fontSize: '16px', textAlign: 'center' }}>Please allow up to two weeks for processing and delivery.</p>
             </form>
         </>
     )

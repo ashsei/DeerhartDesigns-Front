@@ -111,7 +111,7 @@ const Orders = () => {
                   <li className="list-group-item">
                     Transaction ID: {o.transaction_id}
                   </li>
-                  <li className="list-group-item">Amount: ${o.amount}</li>
+                  <li className="list-group-item">Amount: ${o.amount/100}</li>
                   <li className="list-group-item">Ordered By: {o.user.name}</li>
                   <li className="list-group-item">
                     Ordered On: {moment(o.createdAt).fromNow()}
