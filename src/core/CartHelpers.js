@@ -47,7 +47,6 @@ export const updateItem = (productId, count) => {
         cart[i].count = count;
       }
     });
-
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 };

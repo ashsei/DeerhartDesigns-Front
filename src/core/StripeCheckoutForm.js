@@ -74,6 +74,7 @@ export default function CheckoutForm(items) {
         // and display any errors as the customer types their card details
         setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
+        
     };
 
     const handleAddress = name => (event) => {
